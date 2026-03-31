@@ -1,0 +1,5 @@
+llama-index==0.14.19
+openai
+python-dotenv
+pypdf
+llama-index-readers-file==0.6.0
