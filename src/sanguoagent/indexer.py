@@ -6,7 +6,7 @@ from .settings import Settings
 settings = Settings()
 
 llm = OpenAI(
-    model=settings.MODEL,
+    model=settings.EMBEDDING_MODEL,
     api_key=settings.OPENAI_API_KEY,
     api_base=getattr(settings, "OPENAI_API_BASE", None),
 )

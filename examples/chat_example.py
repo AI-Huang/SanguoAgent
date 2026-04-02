@@ -7,28 +7,12 @@ sys.path.insert(
 )
 
 from sanguoagent.chat_engine import chat_with_agent, get_chat_engine
-from sanguoagent.indexer import create_index, load_index, save_index
+from sanguoagent.pipelines.load_index import load_or_create_index
 from sanguoagent.settings import Settings
-from sanguoagent.utils import ensure_directory
 
 settings = Settings()
 
-# 确保目录存在
-data_dir = settings.PROCESSED_DATA_DIR
-vector_store_dir = settings.VECTOR_STORE_DIR
-ensure_directory(data_dir)
-ensure_directory(vector_store_dir)
-
-# 构建或加载索引
-if not os.path.exists(vector_store_dir) or len(os.listdir(vector_store_dir)) == 0:
-    print("正在构建索引...")
-    index = create_index(data_dir)
-    save_index(index, vector_store_dir)
-    print("索引构建完成！")
-else:
-    print("正在加载索引...")
-    index = load_index(vector_store_dir)
-    print("索引加载完成！")
+index = load_or_create_index()
 
 # 创建聊天引擎
 chat_engine = get_chat_engine(index)

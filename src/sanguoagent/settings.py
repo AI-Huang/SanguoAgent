@@ -11,12 +11,12 @@ class Settings:
         if os.path.exists(".env.dev"):
             load_dotenv(".env.dev")
 
-        # API 配置
+        # OpenAI API 配置
         self.OPENAI_API_BASE = os.getenv("OPENAI_API_BASE")
         self.OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
         # 模型配置
-        self.MODEL = os.getenv("MODEL", "text-embedding-3-small")
+        self.EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "text-embedding-3-small")
 
         # 索引配置
         self.CHUNK_SIZE = int(os.getenv("CHUNK_SIZE", "1000"))
